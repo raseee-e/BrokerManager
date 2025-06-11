@@ -1,4 +1,4 @@
-const db = require('./services/database.service');
+import db from './services/database.service.js';
 
 const seedDatabase = async () => {
   try {

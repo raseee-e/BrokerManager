@@ -1,4 +1,5 @@
-const { Pool } = require('pg');
+import pkg from 'pg';
+const { Pool } = pkg;
 
 // Configure the PostgreSQL connection using environment variables
 const pool = new Pool({
@@ -14,6 +15,6 @@ const query = (text, params) => {
   return pool.query(text, params);
 };
 
-module.exports = {
+export default {
   query,
 };

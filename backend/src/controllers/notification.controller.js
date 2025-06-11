@@ -41,7 +41,7 @@ const deleteNotification = (req, res) => {
   res.status(200).json({ message: 'Notification deleted successfully' });
 };
 
-module.exports = {
+export default {
   getAllNotifications,
   getNotificationById,
   createNotification,

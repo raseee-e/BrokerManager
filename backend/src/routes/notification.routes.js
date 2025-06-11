@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import notificationController from '../controllers/notification.controller.js';
+
 const router = express.Router();
-const notificationController = require('../controllers/notification.controller');
 
 // Define routes
 router.get('/', notificationController.getAllNotifications);
@@ -8,4 +9,4 @@ router.get('/:id', notificationController.getNotificationById);
 router.post('/', notificationController.createNotification);
 router.delete('/:id', notificationController.deleteNotification);
 
-module.exports = router;
+export default router;

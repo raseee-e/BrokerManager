@@ -1,0 +1,19 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BrokerManager API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/notifications": {
+      "get": {
+        "summary": "Get all notifications",
+        "responses": {
+          "200": {
+            "description": "A list of notifications"
+          }
+        }
+      }
+    }
+  }
+}
