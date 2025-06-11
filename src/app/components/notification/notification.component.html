@@ -1,0 +1,41 @@
+<section class="notification-section">
+  <h2>Notifications</h2>
+  <form class="notification-form" (ngSubmit)="addNotification()">
+    <input [(ngModel)]="newNotification.userId" name="userId" type="number" placeholder="User ID" required>
+    <input [(ngModel)]="newNotification.stockId" name="stockId" type="number" placeholder="Stock ID" required>
+    <select [(ngModel)]="newNotification.direction" name="direction" required>
+      <option value="" disabled selected>Direction</option>
+      <option value="above">Above</option>
+      <option value="below">Below</option>
+    </select>
+    <button type="submit">
+      <span class="material-icons">add_alert</span>
+      Add
+    </button>
+  </form>
+  <div class="notification-list">
+    <div class="notification-card" *ngFor="let n of notifications">
+      <div class="notification-info">
+        <span class="notification-date">
+          <span class="material-icons">schedule</span>
+          {{ n.createdAt | date:'short' }}
+        </span>
+        <span>User <b>{{ n.userId }}</b></span>
+        <span>Stock <b>{{ n.stockId }}</b></span>
+        <span class="direction" [ngClass]="n.direction">
+          <span class="material-icons">
+            {{ n.direction === 'above' ? 'arrow_upward' : 'arrow_downward' }}
+          </span>
+          {{ n.direction | titlecase }}
+        </span>
+      </div>
+      <button class="delete-btn" (click)="deleteNotification(n.id)" title="Delete">
+        <span class="material-icons">delete</span>
+      </button>
+    </div>
+    <div *ngIf="notifications.length === 0" class="empty-state">
+      <span class="material-icons">notifications_off</span>
+      No notifications yet.
+    </div>
+  </div>
+</section>

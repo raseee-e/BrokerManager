@@ -1,0 +1,27 @@
+/* Add to src/app/app.component.css */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: #3f51b5;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+
+.main-nav a.active,
+.main-nav a:hover {
+  background: #283593;
+}
+
+/* Fix main layout so content starts at the top */

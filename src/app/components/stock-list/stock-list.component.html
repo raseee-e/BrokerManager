@@ -1,0 +1,18 @@
+<section class="stock-section">
+  <h2>Stocks</h2>
+  <div class="stock-list">
+    <div class="stock-card" *ngFor="let stock of stocks">
+      <div class="stock-icon">
+        <span class="material-icons">show_chart</span>
+      </div>
+      <div class="stock-info">
+        <span class="stock-symbol">{{ stock.symbol }}</span>
+        <span class="stock-name">{{ stock.name }}</span>
+      </div>
+    </div>
+    <div *ngIf="stocks.length === 0" class="empty-state">
+      <span class="material-icons">info</span>
+      No stocks found.
+    </div>
+  </div>
+</section>
