@@ -2,17 +2,212 @@
   "swagger": "2.0",
   "info": {
     "title": "BrokerManager API",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "API documentation for BrokerManager backend"
   },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
   "paths": {
     "/api/notifications": {
       "get": {
         "summary": "Get all notifications",
         "responses": {
           "200": {
-            "description": "A list of notifications"
+            "description": "A list of notifications",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Notification" }
+            }
           }
         }
+      },
+      "post": {
+        "summary": "Create a new notification",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Notification object",
+            "required": true,
+            "schema": { "$ref": "#/definitions/NotificationInput" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Notification created",
+            "schema": { "$ref": "#/definitions/Notification" }
+          }
+        }
+      }
+    },
+    "/api/notifications/{id}": {
+      "get": {
+        "summary": "Get notification by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification found",
+            "schema": { "$ref": "#/definitions/Notification" }
+          },
+          "404": { "description": "Notification not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete notification by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Notification deleted" },
+          "404": { "description": "Notification not found" }
+        }
+      }
+    },
+    "/api/users/register": {
+      "post": {
+        "summary": "Register a new user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User registration data",
+            "required": true,
+            "schema": { "$ref": "#/definitions/UserInput" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User registered",
+            "schema": { "$ref": "#/definitions/User" }
+          }
+        }
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "summary": "Login a user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User login data",
+            "required": true,
+            "schema": { "$ref": "#/definitions/UserLogin" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": { "type": "string" }
+              }
+            }
+          },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
+    "/api/stocks": {
+      "get": {
+        "summary": "Get all stocks",
+        "responses": {
+          "200": {
+            "description": "A list of stocks",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Stock" }
+            }
+          }
+        }
+      }
+    },
+    "/api/stocks/{id}": {
+      "get": {
+        "summary": "Get stock by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stock found",
+            "schema": { "$ref": "#/definitions/Stock" }
+          },
+          "404": { "description": "Stock not found" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Notification": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "userId": { "type": "integer" },
+        "stockId": { "type": "integer" },
+        "direction": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "NotificationInput": {
+      "type": "object",
+      "properties": {
+        "userId": { "type": "integer" },
+        "stockId": { "type": "integer" },
+        "direction": { "type": "string" }
+      },
+      "required": ["userId", "stockId", "direction"]
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "username": { "type": "string" },
+        "email": { "type": "string" }
+      }
+    },
+    "UserInput": {
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "password": { "type": "string" }
+      },
+      "required": ["username", "email", "password"]
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "password": { "type": "string" }
+      },
+      "required": ["email", "password"]
+    },
+    "Stock": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "symbol": { "type": "string" },
+        "name": { "type": "string" }
       }
     }
   }
