@@ -22,19 +22,28 @@ export class NotificationComponent implements OnInit {
   }
 
   loadNotifications() {
-    this.notificationService.getNotifications().subscribe(data => this.notifications = data);
+    this.notificationService.getNotifications().subscribe(data => {
+      this.notifications = data;
+    });
   }
 
   addNotification() {
     if (this.newNotification.userId && this.newNotification.stockId && this.newNotification.direction) {
-      this.notificationService.createNotification(this.newNotification).subscribe(() => {
-        this.loadNotifications();
+      this.notificationService.createNotification(this.newNotification).subscribe(notification => {
+        this.notifications.push(notification);
         this.newNotification = {};
       });
     }
   }
 
   deleteNotification(id: number) {
-    this.notificationService.deleteNotification(id).subscribe(() => this.loadNotifications());
+    this.notificationService.deleteNotification(id).subscribe(() => {
+      this.notifications = this.notifications.filter(n => n.id !== id);
+    });
+  }
+
+  markAllAsRead() {
+    // Implement as needed, or just clear for demo
+    this.notifications = [];
   }
 }

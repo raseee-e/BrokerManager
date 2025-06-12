@@ -13,6 +13,7 @@
       Add
     </button>
   </form>
+  <button (click)="markAllAsRead()" style="margin-bottom:1rem;">Mark all as read</button>
   <div class="notification-list">
     <div class="notification-card" *ngFor="let n of notifications">
       <div class="notification-info">

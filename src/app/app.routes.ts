@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { NotificationComponent } from './components/notification/notification.component';
-import { StockListComponent } from './components/stock-list/stock-list.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'stocks', component: StockListComponent },
-  { path: 'notifications', component: NotificationComponent }
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/home/home.component').then(m => m.HomeComponent),
+  },
+  {
+    path: 'stocks',
+    loadComponent: () =>
+      import("./components/stock-list/stock-list.component").then(m => m.StockListComponent),
+  },
+  {
+    path: 'notifications',
+    loadComponent: () => import("./components/notification/notification.component").then(m => m.NotificationComponent),
+  },
 ];
