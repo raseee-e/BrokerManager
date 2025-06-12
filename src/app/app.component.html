@@ -1,12 +1,3 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <style>
   :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
@@ -169,15 +160,22 @@
 </style>
 
 <nav class="main-nav">
-  <a
-    routerLink="/"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{exact:true}"
-  >
-    Home
-  </a>
-  <a routerLink="/stocks" routerLinkActive="active">Stocks</a>
-  <a routerLink="/notifications" routerLinkActive="active">Notifications</a>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+  <a routerLink="/stocks" routerLinkActive="active">Company</a>
+  <a routerLink="/myshares" routerLinkActive="active">MyShares</a>
+  <a routerLink="/watchlist" routerLinkActive="active">Watchlist</a>
+  <span class="nav-spacer"></span>
+  <ng-container *ngIf="isLoggedIn(); else guestLinks">
+    <span class="account-info">
+      <span class="material-icons" style="vertical-align:middle;">account_circle</span>
+      {{ getUsername() }}
+      <a (click)="logout()" class="nav-btn small-btn" style="margin-left:0.5rem;">Logout</a>
+    </span>
+  </ng-container>
+  <ng-template #guestLinks>
+    <a routerLink="/login" routerLinkActive="active" class="nav-btn small-btn">Login</a>
+    <a routerLink="/register" routerLinkActive="active" class="nav-btn small-btn">Register</a>
+  </ng-template>
 </nav>
 <main>
   <router-outlet></router-outlet>

@@ -3,4 +3,5 @@ export interface StockPrice {
   stockId: number;
   price: number;
   timestamp: string;
+  currency: string;
 }

@@ -1,0 +1,14 @@
+<section *ngIf="stock">
+  <h2>{{ stock.name }} ({{ stock.symbol }})</h2>
+  <ul>
+    <li>Open Rate: {{ stock.openRate }}</li>
+    <li>Close Rate: {{ stock.closeRate }}</li>
+    <li>Peak Price: {{ stock.peakPrice }}</li>
+    <li>Low Price: {{ stock.lowPrice }}</li>
+    <li>Current Rate: {{ stock.currentRate }}</li>
+    <li>Year Low: {{ stock.yearLow }}</li>
+    <li>Year High: {{ stock.yearHigh }}</li>
+  </ul>
+  <button class="buy-btn">Buy</button>
+  <button class="watch-btn">Watch</button>
+</section>

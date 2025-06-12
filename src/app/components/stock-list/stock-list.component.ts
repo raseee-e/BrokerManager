@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { StockService } from '../../services/stock.service';
 import { Stock } from '../../models/stock.model';
@@ -9,7 +10,7 @@ import { Stock } from '../../models/stock.model';
 @Component({
   selector: 'app-stock-list',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, RouterModule],
   templateUrl: './stock-list.component.html',
   styleUrls: ['./stock-list.component.css']
 })

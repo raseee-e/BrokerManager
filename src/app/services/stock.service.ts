@@ -16,4 +16,8 @@ export class StockService {
   createStock(stock: Partial<Stock>): Observable<Stock> {
     return this.http.post<Stock>(this.apiUrl, stock);
   }
+
+  getStock(id: number): Observable<Stock> {
+    return this.http.get<Stock>(`${this.apiUrl}/${id}`);
+  }
 }

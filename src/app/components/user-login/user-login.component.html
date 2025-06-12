@@ -1,0 +1,9 @@
+<section class="user-section">
+  <h2>Login</h2>
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <input [(ngModel)]="credentials.email" name="email" type="email" placeholder="Email" required>
+    <input [(ngModel)]="credentials.password" name="password" type="password" placeholder="Password" required>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <div *ngIf="message">{{ message }}</div>
+</section>

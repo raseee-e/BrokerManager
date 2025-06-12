@@ -33,10 +33,26 @@ const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
-    res.status(200).json({ token });
+    res.json({
+      token,
+      username: user.username
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-export default { registerUser, loginUser };
+const getUserById = async (req, res) => {
+  const userId = req.userId || req.params.id;
+  try {
+    const result = await db.query('SELECT id, username, email FROM users WHERE id = $1', [userId]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export default { registerUser, loginUser, getUserById };

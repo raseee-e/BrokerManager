@@ -1,0 +1,11 @@
+<section class="user-section">
+  <h2>Register</h2>
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <input [(ngModel)]="user.username" name="username" type="text" placeholder="Username" required>
+    <input [(ngModel)]="user.email" name="email" type="email" placeholder="Email" required>
+    <input [(ngModel)]="user.password" name="password" type="password" placeholder="Password" required>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+  <div *ngIf="message">{{ message }}</div>
+  <div *ngIf="redirecting" style="color:#3f51b5; margin-top:0.5rem;">You are being redirected...</div>
+</section>

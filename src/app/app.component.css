@@ -1,12 +1,17 @@
-/* Add to src/app/app.component.css */
 .main-nav {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   gap: 2rem;
   background: #3f51b5;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   margin-bottom: 2rem;
   border-radius: 0 0 1rem 1rem;
+  position: relative;
+}
+
+.main-nav .nav-spacer {
+  flex: 1 1 auto;
 }
 
 .main-nav a {
@@ -22,6 +27,10 @@
 .main-nav a.active,
 .main-nav a:hover {
   background: #283593;
+}
+
+.nav-btn {
+  cursor: pointer;
 }
 
 /* Fix main layout so content starts at the top */
