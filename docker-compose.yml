@@ -5,9 +5,9 @@ services:
     image: postgres:latest
     container_name: broker_db
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: broker_manager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: broker_db
     ports:
       - "5432:5432"
     volumes:
@@ -25,11 +25,12 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 5432
-      DB_USER: user
-      DB_PASSWORD: password
-      DB_NAME: broker_manager
+      DB_USER: postgres
+      DB_PASSWORD: yourpassword
+      DB_NAME: broker_db
     depends_on:
       - db
+    command: ["./entrypoint.sh"]
     networks:
       - broker_network
 

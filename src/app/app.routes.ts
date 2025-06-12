@@ -20,5 +20,10 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import("./components/user-login/user-login.component").then(m => m.UserLoginComponent),
+  },
+  {
+    path: 'watchlist',
+    loadComponent: () =>
+      import("./components/watchlist/watchlist.component").then(m => m.WatchlistComponent),
   }
 ];

@@ -38,6 +38,8 @@ const createStock = async (req, res) => {
   }
 };
 
+
+
 export default {
   getAllStocks,
   getStockById,

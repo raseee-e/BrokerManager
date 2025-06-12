@@ -1,0 +1,28 @@
+<section class="stock-section">
+  <h2>My Watchlist</h2>
+  <div *ngIf="stocks.length === 0">No stocks in your watchlist.</div>
+  <div *ngFor="let stock of stocks" class="stock-card-vertical">
+    <div class="stock-header">
+      <span class="stock-symbol">{{ stock.symbol }}</span>
+      <span class="stock-name">{{ stock.name }}</span>
+    </div>
+    <div class="stock-facts">
+      <div>Open Rate:</div>
+      <div>Close Rate:</div>
+      <div>Peak Price:</div>
+      <div>Low Price:</div>
+      <div>Current Rate:</div>
+      <div>Year Low:</div>
+      <div>Year High:</div>
+
+      <div>{{ stock.openRate }}</div>
+      <div>{{ stock.closeRate }}</div>
+      <div>{{ stock.peakPrice }}</div>
+      <div>{{ stock.lowPrice }}</div>
+      <div>{{ stock.currentRate }}</div>
+      <div>{{ stock.yearLow }}</div>
+      <div>{{ stock.yearHigh }}</div>
+    </div>
+    <button (click)="remove(stock.id)">Remove</button>
+  </div>
+</section>

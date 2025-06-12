@@ -3,13 +3,12 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { StockListComponent } from "./components/stock-list/stock-list.component"
-import { NotificationComponent } from "./components/notification/notification.component";
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, HomeComponent, StockListComponent, NotificationComponent],
+  imports: [CommonModule, RouterModule, HomeComponent, StockListComponent], // Remove NotificationComponent
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

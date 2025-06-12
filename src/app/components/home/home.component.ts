@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
       <p class="subtitle">Your dashboard for stocks and notifications.</p>
       <div class="home-actions">
         <a routerLink="/stocks" class="home-btn">View Stocks</a>
-        <a routerLink="/notifications" class="home-btn">View Notifications</a>
       </div>
     </section>
   `,

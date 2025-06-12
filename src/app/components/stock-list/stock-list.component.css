@@ -21,6 +21,12 @@
   gap: 1.5rem;
 }
 
+.stock-list-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .stock-card {
   display: flex;
   align-items: center;
@@ -32,8 +38,28 @@
   transition: box-shadow 0.2s;
 }
 
+.stock-card-vertical {
+  background: #f5f6fa;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(63,81,181,0.08);
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
 .stock-card:hover {
   box-shadow: 0 4px 16px rgba(63,81,181,0.10);
+}
+
+.stock-header {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 0.3rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
 }
 
 .stock-icon {
@@ -62,9 +88,58 @@
   font-size: 1.1rem;
 }
 
+.stock-symbol {
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: #e3eafc;
+  color: #283593;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  margin-right: 0.7rem;
+}
+
 .stock-name {
   color: #333;
   font-size: 1rem;
+}
+
+.stock-facts {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem 1.2rem;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stock-facts > div:nth-child(-n+7) {
+  font-weight: bold;
+  color: #3f51b5;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.2rem;
+}
+
+.stock-actions {
+  margin-top: 0.7rem;
+  display: flex;
+  gap: 0.7rem;
+}
+
+.details-btn, .buy-btn, .watch-btn {
+  background: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.details-btn:hover, .buy-btn:hover, .watch-btn:hover {
+  background: #283593;
 }
 
 .empty-state {

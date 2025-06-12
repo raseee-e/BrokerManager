@@ -1,47 +1,36 @@
 <section class="stock-section">
-  <h2>All Company</h2>
+  <h2>Stocks</h2>
   <input #filterInput type="text" placeholder="Filter stocks..." (input)="filterStocks(filterInput.value)" style="margin-bottom:1rem;">
-  
-  <form (ngSubmit)="addStock()" #stockForm="ngForm" style="margin-bottom:1rem; display:flex; flex-wrap:wrap; gap:0.5rem;">
-    <!-- Symbol -->
-    <input
-      [(ngModel)]="newStock.symbol"
-      name="symbol"
-      placeholder="Symbol (e.g. AAPL)"
-      required
-      minlength="1"
-      maxlength="10"
-      style="flex:1 1 120px;"
-    >
-    <!-- Name -->
-    <input
-      [(ngModel)]="newStock.name"
-      name="name"
-      placeholder="Company Name"
-      required
-      minlength="2"
-      maxlength="100"
-      style="flex:2 1 200px;"
-    >
-    <!-- Example for more fields:
-    <input
-      [(ngModel)]="newStock.market"
-      name="market"
-      placeholder="Market (e.g. NASDAQ)"
-      style="flex:1 1 120px;"
-    >
-    -->
-    <button type="submit" [disabled]="stockForm.invalid">Add Stock</button>
-  </form>
 
-  <div class="stock-list">
-    <div class="stock-card" *ngFor="let stock of filteredStocks">
-      <div class="stock-icon">
-        <span class="material-icons">show_chart</span>
-      </div>
-      <div class="stock-info">
+  <div class="stock-list-vertical">
+    <div class="stock-card-vertical" *ngFor="let stock of filteredStocks">
+      <div class="stock-header">
         <span class="stock-symbol">{{ stock.symbol }}</span>
         <span class="stock-name">{{ stock.name }}</span>
+      </div>
+      <div class="stock-facts">
+        <div>Open Rate:</div>
+        <div>Close Rate:</div>
+        <div>Peak Price:</div>
+        <div>Low Price:</div>
+        <div>Current Rate:</div>
+        <div>Year Low:</div>
+        <div>Year High:</div>
+
+        <div>{{ stock.openRate }}</div>
+        <div>{{ stock.closeRate }}</div>
+        <div>{{ stock.peakPrice }}</div>
+        <div>{{ stock.lowPrice }}</div>
+        <div>{{ stock.currentRate }}</div>
+        <div>{{ stock.yearLow }}</div>
+        <div>{{ stock.yearHigh }}</div>
+      </div>
+      <div class="stock-actions">
+        <a [routerLink]="['/Stocks', stock.id]">
+          <button class="details-btn">Details</button>
+        </a>
+        <button class="buy-btn">Buy</button>
+        <button class="watch-btn" (click)="addToWatchlist(stock.id)">Watch</button>
       </div>
     </div>
     <div *ngIf="filteredStocks.length === 0" class="empty-state">
@@ -49,41 +38,4 @@
       No stocks found.
     </div>
   </div>
-
-  <table class="stock-table">
-    <thead>
-      <tr>
-        <th>Company Name</th>
-        <th>Open Rate</th>
-        <th>Close Rate</th>
-        <th>Today's Peak Price</th>
-        <th>Today's Low Price</th>
-        <th>Current Rate</th>
-        <th>Year Low</th>
-        <th>Year High</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let stock of filteredStocks">
-        <td>{{ stock.name }}</td>
-        <td>{{ stock.openRate }}</td>
-        <td>{{ stock.closeRate }}</td>
-        <td>{{ stock.peakPrice }}</td>
-        <td>{{ stock.lowPrice }}</td>
-        <td>{{ stock.currentRate }}</td>
-        <td>{{ stock.yearLow }}</td>
-        <td>{{ stock.yearHigh }}</td>
-        <td>
-          <a [routerLink]="['/Stocks', stock.id]">
-            <button class="details-btn">Details</button>
-          </a>
-        </td>
-        <td><button class="buy-btn">Buy</button></td>
-        <td><button class="watch-btn">Watch</button></td>
-      </tr>
-    </tbody>
-  </table>
 </section>

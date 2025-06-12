@@ -1,14 +1,29 @@
 <section *ngIf="stock">
+  <div style="max-width:700px;margin:0 auto 2rem auto;">
+    <canvas baseChart
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      chartType="line">
+    </canvas>
+  </div>
   <h2>{{ stock.name }} ({{ stock.symbol }})</h2>
-  <ul>
-    <li>Open Rate: {{ stock.openRate }}</li>
-    <li>Close Rate: {{ stock.closeRate }}</li>
-    <li>Peak Price: {{ stock.peakPrice }}</li>
-    <li>Low Price: {{ stock.lowPrice }}</li>
-    <li>Current Rate: {{ stock.currentRate }}</li>
-    <li>Year Low: {{ stock.yearLow }}</li>
-    <li>Year High: {{ stock.yearHigh }}</li>
-  </ul>
+  <div class="stock-facts">
+    <div>Open Rate:</div>
+    <div>Close Rate:</div>
+    <div>Peak Price:</div>
+    <div>Low Price:</div>
+    <div>Current Rate:</div>
+    <div>Year Low:</div>
+    <div>Year High:</div>
+
+    <div>{{ stock.openRate }}</div>
+    <div>{{ stock.closeRate }}</div>
+    <div>{{ stock.peakPrice }}</div>
+    <div>{{ stock.lowPrice }}</div>
+    <div>{{ stock.currentRate }}</div>
+    <div>{{ stock.yearLow }}</div>
+    <div>{{ stock.yearHigh }}</div>
+  </div>
   <button class="buy-btn">Buy</button>
   <button class="watch-btn">Watch</button>
 </section>

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { StockService } from '../../services/stock.service';
+import { WatchlistService } from '../../services/watchlist.service';
 import { Stock } from '../../models/stock.model';
 
 @Component({
@@ -19,7 +20,7 @@ export class StockListComponent implements OnInit {
   filteredStocks: Stock[] = [];
   newStock: Partial<Stock> = {};
 
-  constructor(private stockService: StockService) {}
+  constructor(private stockService: StockService, private watchlistService: WatchlistService) {}
 
   ngOnInit() {
     this.loadStocks();
@@ -47,5 +48,12 @@ export class StockListComponent implements OnInit {
         this.newStock = {};
       });
     }
+  }
+
+  addToWatchlist(stockId: number) {
+    this.watchlistService.addToWatchlist(stockId).subscribe({
+      next: () => alert('Added to watchlist!'),
+      error: err => alert(err.error?.message || 'Could not add to watchlist.')
+    });
   }
 }

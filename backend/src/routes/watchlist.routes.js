@@ -1,0 +1,25 @@
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import * as watchlistController from '../controllers/watchlist.controller.js';
+
+const router = express.Router();
+
+// Auth middleware
+router.use((req, res, next) => {
+  const auth = req.headers.authorization;
+  if (!auth) return res.status(401).json({ message: 'No token' });
+  const token = auth.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, 'your_jwt_secret');
+    req.userId = decoded.id;
+    next();
+  } catch {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+});
+
+router.post('/', watchlistController.addToWatchlist);
+router.get('/', watchlistController.getWatchlist);
+router.delete('/:stockId', watchlistController.removeFromWatchlist);
+
+export default router;

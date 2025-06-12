@@ -3,10 +3,10 @@ const { Pool } = pkg;
 
 // Configure the PostgreSQL connection using environment variables
 const pool = new Pool({
-  user: process.env.DB_USER,
+  user: 'postgres',
   host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
+  database: 'broker_db',
+  password: 'yourpassword',
   port: process.env.DB_PORT,
 });
 
