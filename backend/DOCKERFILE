@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /backend
 
-COPY package.json .
+COPY package.json ./
 RUN npm install
 
 COPY . .
@@ -11,7 +11,4 @@ RUN apt-get update && apt-get install -y postgresql-client
 
 EXPOSE 3000
 
-
-
-# Start the application
 CMD ["node", "src/server.js"]

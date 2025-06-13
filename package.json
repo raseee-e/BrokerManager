@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:frontend": "ng build --output-path=dist/broker-manager --configuration=production",
+    "docker:up": "docker-compose up --build"
   },
   "private": true,
   "dependencies": {

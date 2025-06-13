@@ -174,3 +174,4 @@ export class StockDetailsComponent implements OnInit {
     return !!localStorage.getItem('token');
   }
 }
+

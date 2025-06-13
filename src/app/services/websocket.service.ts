@@ -7,8 +7,12 @@ export class WebsocketService {
   private subject = new Subject<any>();
 
   connect(): Observable<any> {
-    this.ws = new WebSocket('ws://localhost:3000');
-    this.ws.onmessage = (event) => this.subject.next(JSON.parse(event.data));
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+      this.ws = new WebSocket('ws://localhost:3000');
+      this.ws.onmessage = (event) => this.subject.next(JSON.parse(event.data));
+      this.ws.onclose = () => this.subject.complete();
+      this.ws.onerror = (err) => this.subject.error(err);
+    }
     return this.subject.asObservable();
   }
 
