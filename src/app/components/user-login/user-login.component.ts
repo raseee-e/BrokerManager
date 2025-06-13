@@ -21,9 +21,9 @@ export class UserLoginComponent {
     this.http.post<{ token: string, username: string }>('/api/users/login', this.credentials).subscribe({
       next: res => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('username', res.username); // Make sure your backend returns username
+        localStorage.setItem('username', res.username);
         this.message = 'Login successful!';
-        this.router.navigate(['/stocks']); // Redirect to stocks page
+        this.router.navigate(['/stocks']);
       },
       error: err => this.message = err.error?.message || 'Login failed.'
     });

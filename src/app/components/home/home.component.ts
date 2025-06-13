@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
   template: `
     <section class="home-section">
       <h1>Welcome to BrokerManager</h1>
-      <p class="subtitle">Your dashboard for stocks and notifications.</p>
+      <p class="subtitle">Your dashboard for stocks</p>
       <div class="home-actions">
         <a routerLink="/stocks" class="home-btn">View Stocks</a>
       </div>
@@ -17,11 +17,11 @@ import { RouterModule } from '@angular/router';
   styles: [`
     .home-section {
       max-width: 600px;
-      margin: 0.5rem auto 0 auto; /* Minimal top margin */
+      margin: 0.5rem auto 0 auto;
       background: #fff;
       border-radius: 1rem;
       box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-      padding: 1.2rem 1rem 1rem 1rem; /* Less padding */
+      padding: 1.2rem 1rem 1rem 1rem;
       text-align: center;
     }
     .home-section h1 {

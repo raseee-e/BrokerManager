@@ -4,7 +4,6 @@ import * as watchlistController from '../controllers/watchlist.controller.js';
 
 const router = express.Router();
 
-// Auth middleware
 router.use((req, res, next) => {
   const auth = req.headers.authorization;
   if (!auth) return res.status(401).json({ message: 'No token' });

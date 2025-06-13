@@ -2,7 +2,6 @@ import db from './services/database.service.js';
 
 const seedDatabase = async () => {
   try {
-    // Create tables
     await db.query(`
       CREATE TABLE IF NOT EXISTS notifications (
         id SERIAL PRIMARY KEY,
@@ -13,7 +12,6 @@ const seedDatabase = async () => {
       );
     `);
 
-    // Insert initial data
     await db.query(`
       INSERT INTO notifications (userId, stockId, direction)
       VALUES (1, 101, 'above'), (2, 102, 'below');

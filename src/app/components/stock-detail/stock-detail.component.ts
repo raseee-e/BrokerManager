@@ -41,10 +41,10 @@ export class StockDetailsComponent implements OnInit {
       {
         data: [],
         label: '',
-        fill: false, // classic line chart, no area fill
+        fill: false,
         tension: 0.4,
-        borderColor: '#1976d2', // vivid blue
-        borderWidth: 3,         // thicker line
+        borderColor: '#1976d2', 
+        borderWidth: 3,       
         backgroundColor: '#1976d2',
         pointBackgroundColor: '#fff',
         pointBorderColor: '#1976d2',
@@ -74,7 +74,7 @@ export class StockDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private stockService: StockService,
     private watchlistService: WatchlistService,
-    private router: Router // add this
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -89,7 +89,6 @@ export class StockDetailsComponent implements OnInit {
           this.noPrices = true;
           return;
         }
-        // Sort by timestamp string (e.g., '09:00', '10:00')
         prices.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
         this.lineChartData.labels = prices.map(p => p.timestamp);
         this.lineChartData.datasets[0].data = prices.map(p => p.price);
@@ -98,7 +97,6 @@ export class StockDetailsComponent implements OnInit {
         this.noPrices = true;
       });
 
-      // Check if on watchlist
       this.watchlistService.getWatchlist().subscribe(watchlist => {
         this.isWatched = !!watchlist.find(s => s.id === stock.id);
       });

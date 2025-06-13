@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { createRequire } from 'module';
-import notificationRoutes from './routes/notification.routes.js';
 import userRoutes from './routes/user.routes.js';
 import stockRoutes from './routes/stock.routes.js';
 import watchlistRoutes from './routes/watchlist.routes.js';
@@ -22,7 +21,6 @@ app.use(express.json());
 app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname), '../public')));
 
 // Routes
-app.use('/api/notifications', notificationRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/stocks', stockRoutes);
 app.use('/api/watchlist', watchlistRoutes);

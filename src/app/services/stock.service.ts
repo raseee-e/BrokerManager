@@ -56,7 +56,7 @@ export class StockService {
       stockId: p.stock_id,
       price: p.price,
       timestamp: p.time,
-      currency: p.currency ?? 'USD' // add this line
+      currency: p.currency ?? 'USD'
     })))
   );
 }

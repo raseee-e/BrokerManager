@@ -25,7 +25,7 @@ export class UserRegisterComponent {
         this.redirecting = true;
         setTimeout(() => {
           this.router.navigate(['/login']);
-        }, 2000); // 2 seconds delay
+        }, 2000);
       },
       error: err => this.message = err.error?.message || 'Registration failed.'
     });

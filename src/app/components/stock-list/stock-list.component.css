@@ -1,5 +1,5 @@
 .stock-section {
-  max-width: 1100px; /* was 700px */
+  max-width: 1100px;
   margin: 2rem auto;
   background: #fff;
   border-radius: 1rem;
@@ -156,7 +156,6 @@
   gap: 0.5rem;
 }
 
-/* Form styling */
 form {
   display: flex;
   gap: 0.5rem;
@@ -191,7 +190,6 @@ input[type="text"] {
   font-size: 1rem;
 }
 
-/* Buy Modal Styling */
 .modal-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -290,7 +288,6 @@ input[type="text"] {
   text-align: center;
 }
 
-/* Responsive: On small screens, stack as label-value pairs */
 @media (max-width: 900px) {
   .stock-section {
     padding: 1rem 0.3rem;

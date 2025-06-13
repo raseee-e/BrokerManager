@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { StockListComponent } from "./components/stock-list/stock-list.component"
 import { HttpClient } from '@angular/common/http';
 import { WebsocketService } from './services/websocket.service';
-import { AlertComponent } from './components/alert/alert.component'; // if not already imported
+import { AlertComponent } from './components/alert/alert.component';
 
 @Component({
   selector: 'app-root',
@@ -26,11 +26,8 @@ export class AppComponent implements OnInit {
     }
     this.wsService.connect().subscribe({
       next: msg => {
-        // Show a notification, update UI, etc.
         console.log('WebSocket message:', msg);
-        // Example: alert on certain events
         if (msg.type === 'heartbeat') {
-          // Show a toast or notification
         }
         if (msg.type === 'stock-bought') {
           this.showAlert(msg.message);
