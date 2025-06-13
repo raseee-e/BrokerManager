@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StockService } from '../../services/stock.service';
 import { WatchlistService } from '../../services/watchlist.service';
 import { Stock } from '../../models/stock.model';
@@ -7,14 +7,18 @@ import { StockPrice } from '../../models/stock-price.model';
 import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
+import { FormsModule } from '@angular/forms';
+import { AlertComponent } from "../alert/alert.component";
 
 @Component({
   selector: 'app-stock-details',
   standalone: true,
   imports: [
     CommonModule,
-    NgChartsModule
-  ],
+    NgChartsModule,
+    FormsModule,
+    AlertComponent
+],
   templateUrl: './stock-detail.component.html',
   styleUrls: ['./stock-detail.component.css']
 })
@@ -24,6 +28,12 @@ export class StockDetailsComponent implements OnInit {
   noPrices = false;
   isWatched = false;
   watchLoading = false;
+  showBuyModal = false;
+  buyQuantity = 1;
+  buyLoading = false;
+  buyMessage = '';
+
+  alertMessage = '';
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
@@ -31,12 +41,15 @@ export class StockDetailsComponent implements OnInit {
       {
         data: [],
         label: '',
-        fill: true,
+        fill: false, // classic line chart, no area fill
         tension: 0.4,
-        borderColor: '#3f51b5',
-        backgroundColor: 'rgba(63,81,181,0.08)',
-        pointBackgroundColor: '#3f51b5',
-        pointBorderColor: '#fff',
+        borderColor: '#1976d2', // vivid blue
+        borderWidth: 3,         // thicker line
+        backgroundColor: '#1976d2',
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#1976d2',
+        pointRadius: 6,
+        pointHoverRadius: 8,
       }
     ]
   };
@@ -49,10 +62,10 @@ export class StockDetailsComponent implements OnInit {
     scales: {
       y: {
         beginAtZero: false,
-        grid: { color: '#f44336' }
+        grid: { color: '#e0e0e0' }
       },
       x: {
-        grid: { color: '#f44336' }
+        grid: { color: '#e0e0e0' }
       }
     }
   };
@@ -60,7 +73,8 @@ export class StockDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private stockService: StockService,
-    private watchlistService: WatchlistService
+    private watchlistService: WatchlistService,
+    private router: Router // add this
   ) {}
 
   ngOnInit() {
@@ -91,7 +105,16 @@ export class StockDetailsComponent implements OnInit {
     });
   }
 
+  showAlert(msg: string) {
+    this.alertMessage = msg;
+    setTimeout(() => this.alertMessage = '', 2500);
+  }
+
   toggleWatch() {
+    if (!this.isLoggedIn()) {
+      this.showAlert('Please log in to use your watchlist.');
+      return;
+    }
     if (!this.stock) return;
     this.watchLoading = true;
     if (this.isWatched) {
@@ -111,5 +134,43 @@ export class StockDetailsComponent implements OnInit {
         error: () => { this.watchLoading = false; }
       });
     }
+  }
+
+  openBuyModal() {
+    if (!this.isLoggedIn()) {
+      this.showAlert('Please log in to buy shares.');
+      return;
+    }
+    this.showBuyModal = true;
+    this.buyQuantity = 1;
+    this.buyMessage = '';
+  }
+  closeBuyModal() {
+    this.showBuyModal = false;
+    this.buyMessage = '';
+  }
+  confirmBuy() {
+    if (!this.stock || this.buyQuantity < 1) return;
+    this.buyLoading = true;
+    this.buyMessage = '';
+    this.stockService.buyShare(this.stock.id, this.buyQuantity).subscribe({
+      next: () => {
+        this.buyMessage = 'Successfully bought!';
+        this.buyLoading = false;
+        setTimeout(() => this.closeBuyModal(), 1000);
+      },
+      error: err => {
+        this.buyMessage = err.error?.message || 'Could not buy share.';
+        this.buyLoading = false;
+      }
+    });
+  }
+
+  goBack() {
+    this.router.navigate(['/stocks']);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
 }

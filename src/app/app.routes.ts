@@ -30,5 +30,10 @@ export const routes: Routes = [
     path: 'watchlist',
     loadComponent: () =>
       import("./components/watchlist/watchlist.component").then(m => m.WatchlistComponent),
+  },
+  {
+    path: 'myshares',
+    loadComponent: () =>
+      import("./components/my-shares/my-shares.component").then(m => m.MySharesComponent),
   }
 ];

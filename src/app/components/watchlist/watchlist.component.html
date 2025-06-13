@@ -23,6 +23,11 @@
       <div>{{ stock.yearLow }}</div>
       <div>{{ stock.yearHigh }}</div>
     </div>
-    <button (click)="remove(stock.id)">Remove</button>
+    <div class="stock-actions">
+      <a [routerLink]="['/stocks', stock.id]">
+        <button class="details-btn">Details</button>
+      </a>
+      <button (click)="remove(stock.id)">Remove</button>
+    </div>
   </div>
 </section>

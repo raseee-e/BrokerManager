@@ -29,7 +29,7 @@
         <a [routerLink]="['/stocks', stock.id]">
           <button class="details-btn">Details</button>
         </a>
-        <button class="buy-btn">Buy</button>
+        <button class="buy-btn" (click)="openBuyModal(stock)">Buy</button>
         <button class="watch-btn" (click)="addToWatchlist(stock.id)">Watch</button>
       </div>
     </div>
@@ -39,3 +39,19 @@
     </div>
   </div>
 </section>
+
+<!-- Add the modal at the end of the file -->
+<div class="modal-backdrop" *ngIf="showBuyModal" (click)="closeBuyModal()"></div>
+<div class="buy-modal" *ngIf="showBuyModal">
+  <h3>Buy {{ selectedStock?.symbol }}</h3>
+  <label>
+    Quantity:
+    <input type="number" min="1" [(ngModel)]="buyQuantity" />
+  </label>
+  <div class="modal-actions">
+    <button (click)="confirmBuy()" [disabled]="buyLoading || buyQuantity < 1">Confirm</button>
+    <button (click)="closeBuyModal()">Cancel</button>
+  </div>
+  <div *ngIf="buyMessage" class="buy-message">{{ buyMessage }}</div>
+</div>
+<app-alert [message]="alertMessage" type="error"></app-alert>

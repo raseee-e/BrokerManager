@@ -1,5 +1,5 @@
 .stock-section {
-  max-width: 700px;
+  max-width: 1100px; /* was 700px */
   margin: 2rem auto;
   background: #fff;
   border-radius: 1rem;
@@ -46,6 +46,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+  min-width: 0;
 }
 
 .stock-card:hover {
@@ -111,7 +112,8 @@
   color: #444;
   margin-bottom: 0.5rem;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-x: unset;
 }
 
 .stock-facts > div:nth-child(-n+7) {
@@ -187,4 +189,58 @@ input[type="text"] {
   border-radius: 0.4rem;
   padding: 0.5rem 0.8rem;
   font-size: 1rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+.buy-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  padding: 2rem;
+  z-index: 1001;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.buy-modal h3 {
+  margin: 0 0 1rem 0;
+}
+.buy-modal input[type="number"] {
+  width: 80px;
+  padding: 0.4rem;
+  margin-left: 0.5rem;
+  border-radius: 0.3rem;
+  border: 1px solid #cfd8dc;
+}
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+}
+.buy-message {
+  color: #388e3c;
+  margin-top: 0.5rem;
+}
+
+/* Responsive: On small screens, stack as label-value pairs */
+@media (max-width: 900px) {
+  .stock-section {
+    padding: 1rem 0.3rem;
+    max-width: 100vw;
+  }
+  .stock-card-vertical {
+    padding: 0.7rem 0.5rem;
+  }
+  .stock-facts {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+  }
 }

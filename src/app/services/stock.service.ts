@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Stock } from '../models/stock.model';
 import { StockPrice } from '../models/stock-price.model';
@@ -61,4 +61,15 @@ export class StockService {
   );
 }
 
+buyShare(stockId: number, quantity: number) {
+  const token = localStorage.getItem('token');
+  const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : undefined;
+  return this.http.post('/api/shares', { stockId, quantity }, { headers });
+}
+
+getMyShares() {
+  const token = localStorage.getItem('token');
+  const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : undefined;
+  return this.http.get<any[]>('/api/shares', { headers, responseType: 'json' as const });
+}
 }

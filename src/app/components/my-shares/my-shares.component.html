@@ -1,0 +1,16 @@
+<app-alert [message]="alertMessage" type="error"></app-alert>
+
+<section class="stock-section" *ngIf="isLoggedIn()">
+  <h2>My Shares</h2>
+  <div *ngIf="shares.length === 0">You have not bought any shares yet.</div>
+  <div *ngFor="let share of shares" class="stock-card-vertical">
+    <div class="stock-header">
+      <span class="stock-symbol">{{ share.symbol }}</span>
+      <span class="stock-name">{{ share.name }}</span>
+    </div>
+    <div class="shares-info">
+      <div>Quantity: <span>{{ share.quantity }}</span></div>
+    </div>
+    <div class="shares-date">Bought at: {{ share.bought_at | date:'short' }}</div>
+  </div>
+</section>

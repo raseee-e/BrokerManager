@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WatchlistService } from '../../services/watchlist.service';
 import { Stock } from '../../models/stock.model';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-watchlist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './watchlist.component.html',
   styleUrls: ['./watchlist.component.css']
 })
