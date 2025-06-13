@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/', stockController.getAllStocks);
 router.get('/:id', stockController.getStockById);
+router.get('/:id/prices', stockController.getStockPricesByStockId);
 router.post('/', stockController.createStock);
+
 
 export default router;

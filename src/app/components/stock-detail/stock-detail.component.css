@@ -1,0 +1,84 @@
+.stock-details-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  align-items: flex-start;
+}
+
+.chart-container {
+  flex: 2 1 400px;
+  min-width: 350px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 2rem;
+}
+
+.details-container {
+  flex: 1 1 300px;
+  min-width: 280px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stock-facts-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.2rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.stock-facts-table > div:nth-child(2n-1) {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.buy-btn, .watch-btn {
+  background: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.3rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.buy-btn:hover, .watch-btn:hover {
+  background: #283593;
+}
+
+.watch-btn.watched {
+  background: #f44336;
+}
+
+.centered-msg {
+  text-align: center;
+  margin: 2rem 0;
+  color: #888;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .stock-details-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .chart-container, .details-container {
+    min-width: 0;
+    width: 100%;
+  }
+}

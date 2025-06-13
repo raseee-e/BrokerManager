@@ -1,29 +1,34 @@
-<section *ngIf="stock">
-  <div style="max-width:700px;margin:0 auto 2rem auto;">
-    <canvas baseChart
-      [data]="lineChartData"
-      [options]="lineChartOptions"
-      chartType="line">
-    </canvas>
+<section *ngIf="stock" class="stock-details-section">
+  <div class="chart-container">
+    <div *ngIf="loading" class="centered-msg">Loading chart...</div>
+    <div *ngIf="!loading && noPrices" class="centered-msg">No price data available.</div>
+    <div *ngIf="!loading && !noPrices">
+      <canvas baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        chartType="line">
+      </canvas>
+    </div>
   </div>
-  <h2>{{ stock.name }} ({{ stock.symbol }})</h2>
-  <div class="stock-facts">
-    <div>Open Rate:</div>
-    <div>Close Rate:</div>
-    <div>Peak Price:</div>
-    <div>Low Price:</div>
-    <div>Current Rate:</div>
-    <div>Year Low:</div>
-    <div>Year High:</div>
-
-    <div>{{ stock.openRate }}</div>
-    <div>{{ stock.closeRate }}</div>
-    <div>{{ stock.peakPrice }}</div>
-    <div>{{ stock.lowPrice }}</div>
-    <div>{{ stock.currentRate }}</div>
-    <div>{{ stock.yearLow }}</div>
-    <div>{{ stock.yearHigh }}</div>
+  <div class="details-container">
+    <h2>{{ stock.name }} ({{ stock.symbol }})</h2>
+    <div class="stock-facts-table">
+      <div>Open Rate:</div><div>{{ stock.openRate }}</div>
+      <div>Close Rate:</div><div>{{ stock.closeRate }}</div>
+      <div>Peak Price:</div><div>{{ stock.peakPrice }}</div>
+      <div>Low Price:</div><div>{{ stock.lowPrice }}</div>
+      <div>Current Rate:</div><div>{{ stock.currentRate }}</div>
+      <div>Year Low:</div><div>{{ stock.yearLow }}</div>
+      <div>Year High:</div><div>{{ stock.yearHigh }}</div>
+    </div>
+    <div class="actions">
+      <button class="buy-btn">Buy</button>
+      <button class="watch-btn"
+        [class.watched]="isWatched"
+        [disabled]="watchLoading"
+        (click)="toggleWatch()">
+        {{ isWatched ? 'Unwatch' : 'Watch' }}
+      </button>
+    </div>
   </div>
-  <button class="buy-btn">Buy</button>
-  <button class="watch-btn">Watch</button>
 </section>

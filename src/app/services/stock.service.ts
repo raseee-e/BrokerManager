@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Stock } from '../models/stock.model';
+import { StockPrice } from '../models/stock-price.model';
 
 @Injectable({ providedIn: 'root' })
 export class StockService {
@@ -48,4 +49,16 @@ export class StockService {
       }))
     );
   }
+  getStockPrices(stockId: number): Observable<StockPrice[]> {
+  return this.http.get<any[]>(`/api/stocks/${stockId}/prices`).pipe(
+    map(prices => prices.map(p => ({
+      id: p.id,
+      stockId: p.stock_id,
+      price: p.price,
+      timestamp: p.time,
+      currency: p.currency ?? 'USD' // add this line
+    })))
+  );
+}
+
 }

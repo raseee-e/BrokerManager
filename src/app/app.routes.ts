@@ -12,6 +12,11 @@ export const routes: Routes = [
       import("./components/stock-list/stock-list.component").then(m => m.StockListComponent),
   },
   {
+    path: 'stocks/:id',
+    loadComponent: () =>
+      import("./components/stock-detail/stock-detail.component").then(m => m.StockDetailsComponent),
+  },
+  {
     path: 'register',
     loadComponent: () =>
       import("./components/user-register/user-register.component").then(m => m.UserRegisterComponent),
